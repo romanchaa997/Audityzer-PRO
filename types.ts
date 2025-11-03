@@ -1,4 +1,3 @@
-
 import type React from 'react';
 
 export type Page = 'Dashboard' | 'Scans' | 'Integrations' | 'Templates' | 'Workshops' | 'Settings';
@@ -55,4 +54,11 @@ export interface IntegrationState {
 export interface AppIntegrations {
   asana: IntegrationState;
   monday: IntegrationState;
+}
+
+export interface IntegrationEvent {
+  id: string;
+  timestamp: Date;
+  message: string;
+  tool: 'Asana' | 'Monday.com' | 'General';
 }
