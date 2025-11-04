@@ -1,6 +1,6 @@
 import type React from 'react';
 
-export type Page = 'Dashboard' | 'Scans' | 'Integrations' | 'Templates' | 'Workshops' | 'Settings';
+export type Page = 'Dashboard' | 'Scans' | 'Simulation' | 'PQCReadiness' | 'Integrations' | 'Templates' | 'Workshops' | 'Settings';
 
 export interface NavItem {
   name: Page;

@@ -22,6 +22,26 @@ export const ScanIcon: React.FC<{ className?: string }> = ({ className }) => (
   </svg>
 );
 
+export const SimulationIcon: React.FC<{ className?: string }> = ({ className }) => (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+        <path d="m8.5 10.5 3 3"></path>
+        <path d="m12 15-3-3"></path>
+        <path d="m15.5 10.5-3 3"></path>
+        <circle cx="8.5" cy="10.5" r=".5" fill="currentColor"></circle>
+        <circle cx="12" cy="12" r=".5" fill="currentColor"></circle>
+        <circle cx="15.5" cy="10.5" r=".5" fill="currentColor"></circle>
+        <circle cx="12" cy="15" r=".5" fill="currentColor"></circle>
+    </svg>
+);
+
+export const ShieldCheckIcon: React.FC<{ className?: string }> = ({ className }) => (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+        <path d="m9 12 2 2 4-4" />
+    </svg>
+);
+
 export const IntegrationIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M12 22C6.5 22 2 17.5 2 12S6.5 2 12 2s10 4.5 10 10" />
@@ -61,6 +81,14 @@ export const CheckCircleIcon: React.FC<{ className?: string }> = ({ className })
     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
     <polyline points="22 4 12 14.01 9 11.01" />
   </svg>
+);
+
+export const XCircleIcon: React.FC<{ className?: string }> = ({ className }) => (
+    <svg className={className} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <line x1="15" y1="9" x2="9" y2="15" />
+        <line x1="9" y1="9" x2="15" y2="15" />
+    </svg>
 );
 
 export const LoaderIcon: React.FC<{ className?: string }> = ({ className }) => (

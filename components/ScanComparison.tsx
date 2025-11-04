@@ -58,35 +58,55 @@ const ScanComparison: React.FC<ScanComparisonProps> = ({ scans, onBack }) => {
   const comparisonData = useMemo(() => {
     if (!baseScan || !baseScan.result) return [];
     
-    const baseVulns = new Map(baseScan.result.vulnerabilities.map(v => [v.title, v]));
+    // FIX: Explicitly type Map to ensure correct type inference for vulnerabilities.
+    const baseVulns = new Map<string, Vulnerability>(baseScan.result.vulnerabilities.map(v => [v.title, v]));
 
     return scans.map((scan, index) => {
       if (!scan.result) return { ...scan, comparedVulnerabilities: [] };
 
       // For the base scan, just mark all its own vulnerabilities as 'Unchanged' for display consistency
       if (index === 0) {
-        // FIX: Replaced object spread with Object.assign to resolve TS2698
-        const vulns = scan.result.vulnerabilities.map(v => Object.assign({}, v, {status: 'Unchanged' as ComparisonStatus}));
+        // FIX: Replaced object spread with explicit property assignment to prevent "Spread types may only be created from object types" error and ensure type safety.
+        const vulns: ComparedVulnerability[] = scan.result.vulnerabilities.map(v => ({
+            id: v.id,
+            severity: v.severity,
+            title: v.title,
+            description: v.description,
+            recommendation: v.recommendation,
+            status: 'Unchanged'
+        }));
         return { ...scan, comparedVulnerabilities: vulns };
       }
       
-      const currentVulns = new Map(scan.result.vulnerabilities.map(v => [v.title, v]));
+      // FIX: Explicitly type Map to ensure correct type inference for vulnerabilities.
+      const currentVulns = new Map<string, Vulnerability>(scan.result.vulnerabilities.map(v => [v.title, v]));
       const comparedVulnerabilities: ComparedVulnerability[] = [];
       
       // Find New and Unchanged vulnerabilities by iterating through the current scan's findings
       for (const [title, vuln] of currentVulns.entries()) {
-        // FIX: Replaced object spread with Object.assign to resolve TS2698
-        comparedVulnerabilities.push(Object.assign({}, vuln, {
+        // FIX: Replaced object spread with explicit property assignment to prevent "Spread types may only be created from object types" error and ensure type safety.
+        comparedVulnerabilities.push({
+          id: vuln.id,
+          severity: vuln.severity,
+          title: vuln.title,
+          description: vuln.description,
+          recommendation: vuln.recommendation,
           status: baseVulns.has(title) ? 'Unchanged' : 'New',
-        }));
+        });
       }
 
       // Find Resolved vulnerabilities by checking which base vulnerabilities are missing from the current scan
       for (const [title, vuln] of baseVulns.entries()) {
         if (!currentVulns.has(title)) {
-          comparedVulnerabilities.push(Object.assign({}, vuln, {
+          // FIX: Replaced object spread with explicit property assignment to prevent "Spread types may only be created from object types" error and ensure type safety.
+          comparedVulnerabilities.push({
+            id: vuln.id,
+            severity: vuln.severity,
+            title: vuln.title,
+            description: vuln.description,
+            recommendation: vuln.recommendation,
             status: 'Resolved',
-          }));
+          });
         }
       }
       

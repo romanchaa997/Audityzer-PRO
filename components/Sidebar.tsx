@@ -1,6 +1,6 @@
 
 import React from 'react';
-import { DashboardIcon, ScanIcon, IntegrationIcon, TemplateIcon, WorkshopIcon, SettingsIcon } from './ui/Icons';
+import { DashboardIcon, ScanIcon, SimulationIcon, IntegrationIcon, TemplateIcon, WorkshopIcon, SettingsIcon, ShieldCheckIcon } from './ui/Icons';
 import type { Page, NavItem } from '../types';
 
 interface SidebarProps {
@@ -11,6 +11,8 @@ interface SidebarProps {
 const navItems: NavItem[] = [
   { name: 'Dashboard', icon: <DashboardIcon className="w-6 h-6" /> },
   { name: 'Scans', icon: <ScanIcon className="w-6 h-6" /> },
+  { name: 'Simulation', icon: <SimulationIcon className="w-6 h-6" /> },
+  { name: 'PQCReadiness', icon: <ShieldCheckIcon className="w-6 h-6" /> },
   { name: 'Integrations', icon: <IntegrationIcon className="w-6 h-6" /> },
   { name: 'Templates', icon: <TemplateIcon className="w-6 h-6" /> },
   { name: 'Workshops', icon: <WorkshopIcon className="w-6 h-6" /> },
@@ -38,7 +40,7 @@ const Sidebar: React.FC<SidebarProps> = ({ currentPage, setCurrentPage }) => {
                 }`}
               >
                 {item.icon}
-                <span className="ms-3 hidden sm:inline">{item.name}</span>
+                <span className="ms-3 hidden sm:inline">{item.name === 'PQCReadiness' ? 'PQC Readiness' : item.name}</span>
               </a>
             </li>
           ))}

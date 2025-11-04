@@ -27,6 +27,14 @@ const coverageTrendData = [
     { month: 'Jun', coverage: 93 },
 ];
 
+const executionSpeedData = [
+    { month: 'Jan', speed: 15.2 },
+    { month: 'Feb', speed: 14.8 },
+    { month: 'Mar', speed: 15.5 },
+    { month: 'Apr', speed: 13.9 },
+    { month: 'May', speed: 12.5 },
+    { month: 'Jun', speed: 12.3 },
+];
 
 const MetricCard: React.FC<{ title: string; value: string; description: string }> = ({ title, value, description }) => (
     <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
@@ -78,18 +86,34 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
       
-      <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-        <h2 className="text-xl font-semibold mb-4">Test Coverage Trend</h2>
-        <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={coverageTrendData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                <XAxis dataKey="month" stroke="#9ca3af" />
-                <YAxis stroke="#9ca3af" domain={[85, 100]} unit="%" />
-                <Tooltip contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #374151' }} />
-                <Legend />
-                <Line type="monotone" dataKey="coverage" stroke="#22d3ee" strokeWidth={2} activeDot={{ r: 8 }} name="Test Coverage (%)" />
-            </LineChart>
-        </ResponsiveContainer>
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 className="text-xl font-semibold mb-4">Test Coverage Trend</h2>
+          <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={coverageTrendData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                  <XAxis dataKey="month" stroke="#9ca3af" />
+                  <YAxis stroke="#9ca3af" domain={[85, 100]} unit="%" />
+                  <Tooltip contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #374151' }} />
+                  <Legend />
+                  <Line type="monotone" dataKey="coverage" stroke="#22d3ee" strokeWidth={2} activeDot={{ r: 8 }} name="Test Coverage (%)" />
+              </LineChart>
+          </ResponsiveContainer>
+        </div>
+
+        <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
+          <h2 className="text-xl font-semibold mb-4">Scan Execution Speed Trend (s)</h2>
+          <ResponsiveContainer width="100%" height={300}>
+              <LineChart data={executionSpeedData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
+                  <XAxis dataKey="month" stroke="#9ca3af" />
+                  <YAxis stroke="#9ca3af" domain={['dataMin - 1', 'dataMax + 1']} unit="s" />
+                  <Tooltip contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #374151' }} />
+                  <Legend />
+                  <Line type="monotone" dataKey="speed" stroke="#8b5cf6" strokeWidth={2} activeDot={{ r: 8 }} name="Execution Speed (s)" />
+              </LineChart>
+          </ResponsiveContainer>
+        </div>
       </div>
 
     </div>

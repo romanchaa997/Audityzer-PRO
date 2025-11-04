@@ -49,6 +49,8 @@ export const useAppContext = () => {
 // 2. DYNAMICALLY IMPORTED (LAZY-LOADED) COMPONENTS
 const Dashboard = lazy(() => import('./components/Dashboard'));
 const Scans = lazy(() => import('./components/Scans'));
+const Simulation = lazy(() => import('./components/Simulation'));
+const PQCReadiness = lazy(() => import('./components/PQCReadiness'));
 const Integrations = lazy(() => import('./components/Integrations'));
 const Templates = lazy(() => import('./components/Templates'));
 const Workshops = lazy(() => import('./components/Workshops'));
@@ -63,6 +65,8 @@ const AppContent: React.FC = () => {
     switch (currentPage) {
       case 'Dashboard': return <Dashboard />;
       case 'Scans': return <Scans />;
+      case 'Simulation': return <Simulation />;
+      case 'PQCReadiness': return <PQCReadiness />;
       case 'Integrations': return <Integrations />;
       case 'Templates': return <Templates />;
       case 'Workshops': return <Workshops />;
