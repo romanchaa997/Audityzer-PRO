@@ -62,3 +62,9 @@ export interface IntegrationEvent {
   message: string;
   tool: 'Asana' | 'Monday.com' | 'General';
 }
+
+export interface Notification {
+  id: string;
+  type: 'vulnerable' | 'migrated';
+  message: string;
+}
