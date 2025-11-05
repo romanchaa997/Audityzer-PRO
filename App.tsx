@@ -11,6 +11,12 @@ interface AppContextType {
     logIntegrationEvent: (message: string, tool?: 'Asana' | 'Monday.com') => void;
 }
 
+export interface ChatMessage {
+  role: 'user' | 'model';
+  text: string;
+}
+
+
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const AppProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
