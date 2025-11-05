@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ResponsiveContainer, BarChart, Bar, XAxis, YAxis, Tooltip, Legend, PieChart, Pie, Cell, LineChart, Line, CartesianGrid } from 'recharts';
 
@@ -28,12 +27,12 @@ const coverageTrendData = [
 ];
 
 const executionSpeedData = [
-    { month: 'Jan', speed: 15.2 },
-    { month: 'Feb', speed: 14.8 },
-    { month: 'Mar', speed: 15.5 },
-    { month: 'Apr', speed: 13.9 },
-    { month: 'May', speed: 12.5 },
-    { month: 'Jun', speed: 12.3 },
+    { month: 'Jan', averageSpeed: 15.2, highestSpeed: 10.1 },
+    { month: 'Feb', averageSpeed: 14.8, highestSpeed: 9.8 },
+    { month: 'Mar', averageSpeed: 15.5, highestSpeed: 10.5 },
+    { month: 'Apr', averageSpeed: 13.9, highestSpeed: 9.1 },
+    { month: 'May', averageSpeed: 12.5, highestSpeed: 8.5 },
+    { month: 'Jun', averageSpeed: 12.3, highestSpeed: 8.1 },
 ];
 
 const MetricCard: React.FC<{ title: string; value: string; description: string }> = ({ title, value, description }) => (
@@ -102,7 +101,7 @@ const Dashboard: React.FC = () => {
         </div>
 
         <div className="bg-gray-800 p-6 rounded-lg shadow-lg">
-          <h2 className="text-xl font-semibold mb-4">Scan Execution Speed Trend (s)</h2>
+          <h2 className="text-xl font-semibold mb-4">Scan Execution Speed Trends (s)</h2>
           <ResponsiveContainer width="100%" height={300}>
               <LineChart data={executionSpeedData} margin={{ top: 5, right: 20, left: -10, bottom: 5 }}>
                   <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
@@ -110,7 +109,8 @@ const Dashboard: React.FC = () => {
                   <YAxis stroke="#9ca3af" domain={['dataMin - 1', 'dataMax + 1']} unit="s" />
                   <Tooltip contentStyle={{ backgroundColor: '#1f2937', border: '1px solid #374151' }} />
                   <Legend />
-                  <Line type="monotone" dataKey="speed" stroke="#8b5cf6" strokeWidth={2} activeDot={{ r: 8 }} name="Execution Speed (s)" />
+                  <Line type="monotone" dataKey="averageSpeed" stroke="#8b5cf6" strokeWidth={2} activeDot={{ r: 8 }} name="Average Speed (s)" />
+                  <Line type="monotone" dataKey="highestSpeed" stroke="#eab308" strokeWidth={2} activeDot={{ r: 8 }} name="Highest Speed (s)" />
               </LineChart>
           </ResponsiveContainer>
         </div>

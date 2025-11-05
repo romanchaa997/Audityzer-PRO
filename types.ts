@@ -1,6 +1,6 @@
 import type React from 'react';
 
-export type Page = 'Dashboard' | 'Scans' | 'Simulation' | 'PQCReadiness' | 'Integrations' | 'Templates' | 'Workshops' | 'Settings';
+export type Page = 'Dashboard' | 'Scans' | 'Simulation' | 'PQCReadiness' | 'Integrations' | 'Templates' | 'Workshops' | 'Settings' | 'PRDGenerator' | 'CreatorStudio';
 
 export interface NavItem {
   name: Page;
@@ -67,4 +67,9 @@ export interface Notification {
   id: string;
   type: 'vulnerable' | 'migrated';
   message: string;
+}
+
+export interface ChatMessage {
+  role: 'user' | 'model';
+  text: string;
 }
